@@ -3,7 +3,15 @@ FROM eclipse-temurin:23-jdk-alpine as builder
 WORKDIR /app
 
 
-COPY target/*.jar bankgiro.jar
+COPY . /app
+
+RUN ./mvnw clean package -DskipTests
+
+
+FROM eclipse-temurin:23-jdk-alpine
+WORKDIR /app
+
+COPY --from=builder /app/target/*.jar bankgiro.jar
 
 # Expose the default Spring Boot port
 EXPOSE 8080
