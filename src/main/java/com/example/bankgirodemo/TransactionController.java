@@ -10,19 +10,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/v1/transactions")
-public class Controller {
+public class TransactionController {
 
 
     final TransactionProducer transactionProducer;
 
-    public Controller(TransactionProducer transactionProducer) {
+    public TransactionController(TransactionProducer transactionProducer) {
         this.transactionProducer = transactionProducer;
     }
 
-//    @PostMapping
-//    public ResponseEntity<?> pushTransactions(@RequestBody Transaction transaction) {
-//        transactionProducer.sendTransaction(transaction);
-//        return new ResponseEntity<>(HttpStatus.OK);
-//    }
+    @PostMapping
+    public ResponseEntity<?> pushTransactions(@RequestBody Transaction transaction) {
+        transactionProducer.sendTransaction(transaction);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
 }

@@ -26,9 +26,9 @@ public class TransactionProducer {
         this.kafkaTemplate = kafkaTemplate;
     }
 
-    @Scheduled(cron = "*/5 * * * * *")
-    public void sendTransaction() {
-        var transaction = generateRandomTransaction();
+    //@Scheduled(cron = "*/5 * * * * *")
+    public void sendTransaction(Transaction transaction) {
+
         //kafkaTemplate.send("transactions", transaction);
 
         var date = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
@@ -45,7 +45,6 @@ public class TransactionProducer {
         var amount = ThreadLocalRandom.current().nextDouble(10.0, 10000.0);
         return new Transaction(UUID.randomUUID(), senderAccount, receiverAccount, amount);
     }
-
 
 
 }

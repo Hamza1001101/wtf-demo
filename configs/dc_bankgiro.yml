@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: bankgiro
+  namespace: kianfarah-dev
+  labels:
+    app: bankgiro
+
+spec:
+  serviceName: "bankgiro" # Required for StatefulSets
+  replicas: 3 # Changed from 0. StatefulSet expects at least 1 replica
+  selector:
+    matchLabels:
+      app: bankgiro
+  updateStrategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: bankgiro
+    spec:
+      containers:
+        - name: bankgiro
+          image: 'image-registry.openshift-image-registry.svc:5000/kianfarah-dev/bankgiro@sha256:d05253d62c297b5e51f13bdf1b3e6c7eda592ce4f955accd972395b20d815f10'
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          imagePullPolicy: Always

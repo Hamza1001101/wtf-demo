@@ -5,17 +5,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 //@RestController
 //@RequestMapping("/api/v1/transactions/firstdemo")
-public class TransactionController {
+public class FirstDemoController {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
     private final BankA transactionProducer;
 
-    public TransactionController(BankA transactionProducer) {
+    public FirstDemoController(BankA transactionProducer) {
         this.transactionProducer = transactionProducer;
     }
 
